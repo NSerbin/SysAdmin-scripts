@@ -58,6 +58,6 @@ if [[ -n "$output_file" ]]; then
     command+=" --file=$output_file"
 fi
 
-eval $command
+eval "$command"
 
 echo "PostgreSQL dump generated successfully."
