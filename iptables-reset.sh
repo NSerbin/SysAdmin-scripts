@@ -7,11 +7,11 @@ iptables -P OUTPUT	ACCEPT
 iptables -P INPUT	ACCEPT
 
 
-for table in $(</proc/net/ip_tables_names)
+for table in $(cat /proc/net/ip_tables_names)
 do 
-	iptables -t $table -F
-	iptables -t $table -X
-	iptables -t $table -Z 
+	iptables -t "$table" -F
+	iptables -t "$table" -X
+	iptables -t "$table" -Z 
 done
 
 
