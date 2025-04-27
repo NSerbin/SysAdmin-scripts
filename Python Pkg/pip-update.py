@@ -1,25 +1,13 @@
-# Pip-update.py
 import sys
 
-file = open(sys.argv[1],'r')
+# Open and read the file
+with open(sys.argv[1], 'r', encoding='utf-8') as file:
+    # Skip the first two lines and store the rest
+    vfile = file.readlines()[2:]
 
-vfile = []
-for i in file:
-    vfile.append(i)
+# Process each line and extract the substring before the first space
+vfile_adj = [line.split(' ', 1)[0] for line in vfile]
 
-file.close()
-vfile = vfile[2:]
-vfile_adj = []
-
-for i in vfile:
-    index = 0
-    while (i[index] != ' '):
-        index = index + 1
-    vfile_adj.append(i[:index])
-
-new_file = open('.pip-adj.txt','w')
-for i in vfile_adj:
-    new_file.writelines(i)
-    new_file.writelines('\n')
-
-new_file.close()
+# Write the adjusted lines to a new file
+with open('.pip-adj.txt', 'w', encoding='utf-8') as new_file:
+    new_file.writelines(line + '\n' for line in vfile_adj)
